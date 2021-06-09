@@ -1,0 +1,597 @@
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+
+<div class="container-fluid main-container">
+  <div class="left-container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="title">Pedir um Orçamento</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <form class="needs-validation" [formGroup]="mainForm">
+          <div class="form-row row">
+            <div class="form-group col-12 col-sm-12 col-lg-6 mb-3">
+              <label class="custom-label">Qual limpeza o seu lar precisa?</label>
+              <div class="choices-row">
+                <div class="choice-wrapper chosen" id="expressa-wrapper">
+                  <button class="form-control form-control-sm choice-btn" id="expressa" (click)="mudarLimpeza('Expressa')" autocomplete="off">Expressa</button>
+                  <div class="choice-icon-wrapper" (click)="mudarLimpeza('Expressa')">
+                    <svg id="XMLID_1373_" xmlns="http://www.w3.org/2000/svg" width="44.521" height="44.521" viewBox="0 0 44.521 44.521">
+                      <g id="XMLID_1090_">
+                        <path id="XMLID_1116_" d="M21.29,26.782H16.58V16.058a.87.87,0,0,0-1.739,0v6H12.754V1.739h2.087V8.232a.87.87,0,1,0,1.739,0V.87a.87.87,0,0,0-.87-.87H11.885a.87.87,0,0,0-.87.87V26.782H6.305A3.12,3.12,0,0,0,3.189,29.9V32.19A21.2,21.2,0,0,1,.127,43.2.87.87,0,0,0,.87,44.521H20.348a.869.869,0,0,0,.743-.418A22.938,22.938,0,0,0,24.406,32.19V29.9A3.119,3.119,0,0,0,21.29,26.782ZM12.754,23.8h2.087v2.985H12.754ZM6.305,28.521H21.29A1.378,1.378,0,0,1,22.667,29.9v1.417H4.928V29.9A1.378,1.378,0,0,1,6.305,28.521ZM19.852,42.782H15.34a23.065,23.065,0,0,0,1.769-4.546.87.87,0,1,0-1.678-.457,21.2,21.2,0,0,1-2.072,5H8.847a23.061,23.061,0,0,0,1.769-4.546.87.87,0,1,0-1.678-.457,21.2,21.2,0,0,1-2.072,5H2.356A22.956,22.956,0,0,0,4.912,33.06H22.649A21.186,21.186,0,0,1,19.852,42.782Z" transform="translate(0 0)" fill="#fff"/>
+                        <path id="XMLID_1120_" d="M320.627,387.761a3.171,3.171,0,0,0-2.257.935.87.87,0,1,0,1.23,1.23,1.453,1.453,0,1,1,2.055,2.055.87.87,0,1,0,1.23,1.23,3.192,3.192,0,0,0-2.257-5.45Z" transform="translate(-290.453 -354.043)" fill="#fff"/>
+                        <path id="XMLID_1121_" d="M304.069,247.739a1.48,1.48,0,0,1,1.478,1.478.87.87,0,1,0,1.739,0,3.217,3.217,0,0,0-6.435,0,.87.87,0,1,0,1.739,0A1.48,1.48,0,0,1,304.069,247.739Z" transform="translate(-274.691 -224.609)" fill="#fff"/>
+                        <path id="XMLID_1122_" d="M384.909,305.4a5.13,5.13,0,0,0-8.054-6.158.87.87,0,1,0,1.2,1.255,3.39,3.39,0,0,1,4.808,4.777.87.87,0,0,0,.473,1.453,4.021,4.021,0,1,1-4.174,6.045.87.87,0,1,0-1.484.906,5.761,5.761,0,1,0,7.227-8.278Z" transform="translate(-343.841 -271.916)" fill="#fff"/>
+                        <path id="XMLID_1123_" d="M171.54,129.67a.87.87,0,1,0,.615.255A.872.872,0,0,0,171.54,129.67Z" transform="translate(-155.829 -118.394)" fill="#fff"/>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="info-icon-wrapper" (click)="abrirModal(modalTemplate)">
+                    <span class="material-icons">help_outline</span>
+                  </div>
+                </div>
+                <div class="choice-wrapper" id="pesada-wrapper">
+                  <button class="form-control form-control-sm choice-btn" (click)="mudarLimpeza('Pesada')" id="pesada" autocomplete="off">Pesada</button>
+                  <div class="choice-icon-wrapper" (click)="mudarLimpeza('Pesada')" style="top: 4px">
+                    <svg id="XMLID_1857_" xmlns="http://www.w3.org/2000/svg" width="39.785" height="39.785" viewBox="0 0 39.785 39.785">
+                      <g id="XMLID_460_" transform="translate(0 0)">
+                        <path id="XMLID_461_" d="M259.5,118h-4.389a.777.777,0,1,0,0,1.554H259.5a.777.777,0,0,0,0-1.554Z" transform="translate(-234.574 -108.831)"/>
+                        <path id="XMLID_1066_" d="M39.785,10.834a.777.777,0,0,0-1.554,0v5.784l-4.865,4.865a.777.777,0,1,0,1.1,1.1l3.766-3.766v4.433l-9.077,9.077H24.721l6.48-6.48a.777.777,0,0,0-1.1-1.1l-6.48,6.48v-15.4l1.007.421a.777.777,0,0,0,.6-1.434L20.653,12.9a.777.777,0,1,0-.6,1.434l2.014.843v17.15H16.155v-3.4a6.12,6.12,0,0,0-4.117-5.781,4.565,4.565,0,0,1-3.071-4.312v-1.59a6.278,6.278,0,0,0,4.14,2.1c.024,0,.047,0,.07,0a.777.777,0,0,0,.543-1.332A4.7,4.7,0,0,1,12.3,14.625V12.732H14.64a1.5,1.5,0,0,0,.89-.292l1.174.491a.777.777,0,0,0,.6-1.434l-1.148-.48v-2L18,8.246a.777.777,0,0,0-.6-1.434L15.53,7.6a1.5,1.5,0,0,0-.89-.292H7.46V1.554H22.068V4.861l-1.5.627a.777.777,0,1,0,.6,1.434l4.061-1.7a.777.777,0,0,0-.6-1.434l-1.007.421V1.554H38.231V3.84a.777.777,0,0,0,1.554,0V.777A.777.777,0,0,0,39.008,0H6.682a.777.777,0,0,0-.777.777V7.449A7.376,7.376,0,0,0,0,14.668a.777.777,0,0,0,1.208.647,5.476,5.476,0,0,1,2.125-.844v2.319A31.951,31.951,0,0,0,1.112,28.518v7.169a4.1,4.1,0,0,0,4.1,4.1h6.848a4.1,4.1,0,0,0,4.1-4.1V33.879H39.008a.777.777,0,0,0,.777-.777V10.834Zm-34.9,5.3V14.392H7.414v1.743H4.887ZM9.02,13.922l1.358-1.19h.365v1.893a6.276,6.276,0,0,0,.527,2.53A4.735,4.735,0,0,1,9.02,13.922ZM14.6,11.178H12.754V8.858H14.6ZM7.363,8.858H11.2v2.32H10.086a.777.777,0,0,0-.512.193L7.9,12.838H4.254a7.03,7.03,0,0,0-2.54.473A5.819,5.819,0,0,1,7.363,8.858ZM14.6,35.687a2.546,2.546,0,0,1-2.543,2.543H5.209a2.546,2.546,0,0,1-2.543-2.543V28.519A30.4,30.4,0,0,1,4.652,17.69H7.414v1.143a6.12,6.12,0,0,0,4.116,5.781A4.565,4.565,0,0,1,14.6,28.926v6.762Zm16.751-3.362,6.879-6.879v6.879Z" transform="translate(0 0)"/>
+                        <path id="XMLID_1083_" d="M398.886,119.7a.777.777,0,1,0-1.554,0v1.01a.777.777,0,1,0,1.554,0Z" transform="translate(-366.457 -109.686)"/>
+                        <path id="XMLID_1084_" d="M398.109,188.283a.777.777,0,0,0-.777.777v.982a.777.777,0,1,0,1.554,0v-.982A.777.777,0,0,0,398.109,188.283Z" transform="translate(-366.457 -173.652)"/>
+                        <path id="XMLID_1085_" d="M426.109,159.927a.777.777,0,0,0,0,1.554h1.01a.777.777,0,0,0,0-1.554Z" transform="translate(-392.282 -147.5)"/>
+                        <path id="XMLID_1086_" d="M357.109,159.927a.777.777,0,0,0,0,1.554h1.01a.777.777,0,0,0,0-1.554Z" transform="translate(-328.643 -147.5)"/>
+                        <path id="XMLID_1087_" d="M492.777,84.42a.778.778,0,1,0,.549.228A.783.783,0,0,0,492.777,84.42Z" transform="translate(-453.769 -77.86)"/>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="info-icon-wrapper" (click)="abrirModal(modalTemplate)">
+                    <span class="material-icons">help_outline</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-12 col-sm-12 col-lg-6 mb-3">
+              <label class="custom-label">Seu imóvel é:</label>
+              <div class="choices-row">
+                <div class="choice-wrapper chosen" id="casa">
+                  <button (click)="mudarImovel('casa')" class="form-control form-control-sm choice-btn" autocomplete="off">Casa</button>
+                  <div (click)="mudarImovel('casa')" class="choice-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="38.518" height="38.522" viewBox="0 0 38.518 38.522">
+                      <path id="home" d="M37.983,16.755l0,0L22.267,1.038a3.546,3.546,0,0,0-5.015,0L1.546,16.744l-.016.016A3.545,3.545,0,0,0,3.889,22.8c.036,0,.073.005.11.005h.626V34.371a4.155,4.155,0,0,0,4.151,4.15h6.148a1.129,1.129,0,0,0,1.129-1.129V28.327a1.9,1.9,0,0,1,1.894-1.894h3.626a1.9,1.9,0,0,1,1.894,1.894v9.066a1.129,1.129,0,0,0,1.129,1.129h6.148a4.155,4.155,0,0,0,4.151-4.15V22.807h.581a3.547,3.547,0,0,0,2.51-6.053Zm-1.6,3.417a1.281,1.281,0,0,1-.912.378H33.764a1.128,1.128,0,0,0-1.129,1.129V34.371a1.9,1.9,0,0,1-1.894,1.893H25.723V28.327a4.155,4.155,0,0,0-4.151-4.151H17.946a4.156,4.156,0,0,0-4.151,4.151v7.938H8.776a1.9,1.9,0,0,1-1.894-1.893V21.679A1.128,1.128,0,0,0,5.754,20.55H4.074l-.053,0a1.288,1.288,0,0,1-.888-2.2h0L18.848,2.634a1.289,1.289,0,0,1,1.823,0l15.71,15.71.007.007a1.292,1.292,0,0,1,0,1.821Zm0,0" transform="translate(-0.5 0.001)" fill="#fff"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="choice-wrapper" id="apartamento">
+                  <button (click)="mudarImovel('apartamento')" class="form-control form-control-sm choice-btn" autocomplete="off">Apartamento</button>
+                  <div (click)="mudarImovel('apartamento')" class="choice-icon-wrapper" style="top: 4px">
+                    <svg id="flat" xmlns="http://www.w3.org/2000/svg" width="32.729" height="37.89" viewBox="0 0 32.729 37.89">
+                      <path id="Caminho_1" data-name="Caminho 1" d="M74.668,102.5h2.22v3.158h-2.22Zm0,0" transform="translate(-69.142 -94.915)"/>
+                      <path id="Caminho_2" data-name="Caminho 2" d="M149.332,102.5h2.22v3.158h-2.22Zm0,0" transform="translate(-138.281 -94.915)"/>
+                      <path id="Caminho_3" data-name="Caminho 3" d="M74.668,187.832h2.22v3.158h-2.22Zm0,0" transform="translate(-69.142 -173.932)"/>
+                      <path id="Caminho_4" data-name="Caminho 4" d="M149.332,187.832h2.22v3.158h-2.22Zm0,0" transform="translate(-138.281 -173.932)"/>
+                      <path id="Caminho_5" data-name="Caminho 5" d="M74.668,273.168h2.22v3.158h-2.22Zm0,0" transform="translate(-69.142 -252.952)"/>
+                      <path id="Caminho_6" data-name="Caminho 6" d="M149.332,273.168h2.22v3.158h-2.22Zm0,0" transform="translate(-138.281 -252.952)"/>
+                      <path id="Caminho_7" data-name="Caminho 7" d="M74.668,358.5h2.22v3.158h-2.22Zm0,0" transform="translate(-69.142 -331.969)"/>
+                      <path id="Caminho_8" data-name="Caminho 8" d="M149.332,358.5h2.22v3.158h-2.22Zm0,0" transform="translate(-138.281 -331.969)"/>
+                      <path id="Caminho_9" data-name="Caminho 9" d="M292.664,187.832h2.22v3.158h-2.22Zm0,0" transform="translate(-271.005 -173.932)"/>
+                      <path id="Caminho_10" data-name="Caminho 10" d="M292.664,273.168h2.22v3.158h-2.22Zm0,0" transform="translate(-271.005 -252.952)"/>
+                      <path id="Caminho_11" data-name="Caminho 11" d="M28.992,33.7a4.846,4.846,0,0,0-.007-9.437V7.561H18.809V3.16h-1.8V0H1.8V3.16H0V37.891l32.686-.012v-2.22H28.992ZM4.022,2.221H14.787V5.38h1.8V35.659H2.22V5.38h1.8ZM18.809,9.781h7.956V24.27a4.846,4.846,0,0,0,0,9.432v1.957H18.809Zm11.7,19.2a2.627,2.627,0,1,1-2.627-2.627A2.63,2.63,0,0,1,30.509,28.986Zm0,0" transform="translate(0 0)"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row row custom-form-row">
+            <!-- [ngClass]="{'col-md-2': mainForm.get('imovel').value != 'casa', 'col-md-2': mainForm.get('imovel').value == 'casa'}" -->
+            <div class="form-group col-12 col-sm-6 mb-3 col-md-2">
+              <div class="label-icon-wrapper">
+                <div class="label-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="27.155" height="22.103" viewBox="0 0 27.155 22.103">
+                    <path id="XMLID_874_" d="M25.829,57.947v-.515a2.7,2.7,0,0,0-1.237-2.269V49.542A2.69,2.69,0,0,0,21.9,46.86H5.255a2.69,2.69,0,0,0-2.692,2.682v5.621a2.7,2.7,0,0,0-1.237,2.269v.515A1.776,1.776,0,0,0,0,59.66v6.029a1.776,1.776,0,0,0,1.693,1.769v.714a.794.794,0,0,0,1.588,0V67.46H23.873v.711a.794.794,0,0,0,1.588,0v-.714a1.776,1.776,0,0,0,1.693-1.769V59.66A1.776,1.776,0,0,0,25.829,57.947Zm-21.678-8.4a1.1,1.1,0,0,1,1.1-1.1H21.9a1.1,1.1,0,0,1,1.1,1.1v5.182H21.945V53.33a1.775,1.775,0,0,0-1.777-1.77H15.9a1.775,1.775,0,0,0-1.777,1.77v1.394H13.035V53.33a1.775,1.775,0,0,0-1.777-1.77H6.986A1.775,1.775,0,0,0,5.21,53.33v1.394H4.151ZM20.357,53.33v1.207a.188.188,0,0,1-.188.188H15.9a.188.188,0,0,1-.188-.188V53.33a.188.188,0,0,1,.188-.188h4.273a.188.188,0,0,1,.188.188Zm-8.91,0v1.207a.188.188,0,0,1-.188.188H6.986a.188.188,0,0,1-.188-.188V53.33a.188.188,0,0,1,.188-.188h4.273A.188.188,0,0,1,11.447,53.33Zm-8.534,4.1a1.129,1.129,0,0,1,1.129-1.125H23.112a1.129,1.129,0,0,1,1.129,1.125v.457H2.914Zm22.653,8.257a.19.19,0,0,1-.19.189H1.778a.19.19,0,0,1-.19-.189V59.66a.19.19,0,0,1,.19-.189h23.6a.19.19,0,0,1,.19.189v6.029Z" transform="translate(0 -46.86)" fill="#2d2d2d"/>
+                  </svg>
+                </div>
+                <label class="custom-label" for="quartos">Quartos</label>
+              </div>
+              <div class="input-wrapper">
+                <input type="number" class="form-control form-control-sm" id="quartos"
+                  autocomplete="off" formControlName="quartos" placeholder="1">
+                <span class="material-icons number-control-plus" (click)="aumentarNumero('quartos')">add</span>
+                <span class="material-icons number-control-minus" (click)="diminuirNumero('quartos')">remove</span>
+              </div>
+            </div>
+            <div class="form-group col-12 col-sm-6 mb-3 col-md-2">
+              <div class="label-icon-wrapper">
+                <div class="label-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25.26" height="29.244" viewBox="0 0 25.26 29.244">
+                    <g id="banheiro" transform="translate(0)">
+                      <g id="Grupo_10" data-name="Grupo 10">
+                        <g id="Grupo_9" data-name="Grupo 9">
+                          <path id="Caminho_13" data-name="Caminho 13" d="M75.648,0a1.543,1.543,0,0,0-1.612,1.462V1.95H62.212a2.574,2.574,0,0,0-2.687,2.437V6.824H58.449a1.543,1.543,0,0,0-1.612,1.462V9.965a7.058,7.058,0,0,0-3.762,6.119v.577A1.479,1.479,0,0,0,52,18.034v.975a.514.514,0,0,0,.537.487h17.2a.514.514,0,0,0,.537-.487v-.975A1.479,1.479,0,0,0,69.2,16.661v-.577a6.957,6.957,0,0,0-2.365-5.172,7.233,7.233,0,0,0-1.4-.956V8.286a1.543,1.543,0,0,0-1.612-1.462H62.749V5.361a.514.514,0,0,1,.537-.487H74.036v.975a1.543,1.543,0,0,0,1.612,1.462H77.26V0ZM69.2,18.034v.487H53.075v-.487a.514.514,0,0,1,.537-.487H68.661A.514.514,0,0,1,69.2,18.034ZM66.076,11.6a6.029,6.029,0,0,1,2.047,4.481v.487H54.15v-.487a6.133,6.133,0,0,1,3.371-5.361h7.235A6.273,6.273,0,0,1,66.076,11.6ZM63.824,7.8a.514.514,0,0,1,.537.487V9.748H57.912V8.286a.514.514,0,0,1,.537-.487ZM74.036,3.9H63.287a1.543,1.543,0,0,0-1.612,1.462V6.824H60.6V4.387a1.543,1.543,0,0,1,1.612-1.462H74.036Zm2.15,2.437h-.537a.514.514,0,0,1-.537-.487V1.462a.514.514,0,0,1,.537-.487h.537Z" transform="translate(-52)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_12" data-name="Grupo 12" transform="translate(8.635 20.471)">
+                        <g id="Grupo_11" data-name="Grupo 11">
+                          <path id="Caminho_14" data-name="Caminho 14" d="M180.487,336a.487.487,0,0,0-.487.487v1.95a.487.487,0,1,0,.975,0v-1.95A.487.487,0,0,0,180.487,336Z" transform="translate(-180 -336)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_14" data-name="Grupo 14" transform="translate(8.635 24.37)">
+                        <g id="Grupo_13" data-name="Grupo 13">
+                          <path id="Caminho_15" data-name="Caminho 15" d="M180.487,400a.487.487,0,0,0-.487.487v1.95a.487.487,0,1,0,.975,0v-1.95A.487.487,0,0,0,180.487,400Z" transform="translate(-180 -400)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_16" data-name="Grupo 16" transform="translate(15.111 22.421)">
+                        <g id="Grupo_15" data-name="Grupo 15">
+                          <path id="Caminho_16" data-name="Caminho 16" d="M276.487,368a.487.487,0,0,0-.487.487v1.95a.487.487,0,0,0,.975,0v-1.95A.487.487,0,0,0,276.487,368Z" transform="translate(-276 -368)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_18" data-name="Grupo 18" transform="translate(10.794 22.421)">
+                        <g id="Grupo_17" data-name="Grupo 17" transform="translate(0)">
+                          <path id="Caminho_17" data-name="Caminho 17" d="M212.487,368a.487.487,0,0,0-.487.487v1.95a.487.487,0,0,0,.975,0v-1.95A.487.487,0,0,0,212.487,368Z" transform="translate(-212 -368)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_20" data-name="Grupo 20" transform="translate(6.476 22.421)">
+                        <g id="Grupo_19" data-name="Grupo 19">
+                          <path id="Caminho_18" data-name="Caminho 18" d="M148.487,368a.487.487,0,0,0-.487.487v1.95a.487.487,0,0,0,.975,0v-1.95A.487.487,0,0,0,148.487,368Z" transform="translate(-148 -368)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_22" data-name="Grupo 22" transform="translate(1.95 22.421)">
+                        <g id="Grupo_21" data-name="Grupo 21">
+                          <path id="Caminho_19" data-name="Caminho 19" d="M84.487,368a.487.487,0,0,0-.487.487v1.95a.487.487,0,0,0,.975,0v-1.95A.487.487,0,0,0,84.487,368Z" transform="translate(-84 -368)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_24" data-name="Grupo 24" transform="translate(4.317 20.471)">
+                        <g id="Grupo_23" data-name="Grupo 23">
+                          <path id="Caminho_20" data-name="Caminho 20" d="M116.487,336a.487.487,0,0,0-.487.487v1.95a.487.487,0,1,0,.975,0v-1.95A.487.487,0,0,0,116.487,336Z" transform="translate(-116 -336)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_26" data-name="Grupo 26" transform="translate(12.952 20.471)">
+                        <g id="Grupo_25" data-name="Grupo 25">
+                          <path id="Caminho_21" data-name="Caminho 21" d="M244.487,336a.487.487,0,0,0-.487.487v1.95a.487.487,0,1,0,.975,0v-1.95A.487.487,0,0,0,244.487,336Z" transform="translate(-244 -336)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_28" data-name="Grupo 28" transform="translate(12.952 24.37)">
+                        <g id="Grupo_27" data-name="Grupo 27">
+                          <path id="Caminho_22" data-name="Caminho 22" d="M244.487,400a.487.487,0,0,0-.487.487v1.95a.487.487,0,1,0,.975,0v-1.95A.487.487,0,0,0,244.487,400Z" transform="translate(-244 -400)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_30" data-name="Grupo 30" transform="translate(4.317 24.37)">
+                        <g id="Grupo_29" data-name="Grupo 29">
+                          <path id="Caminho_23" data-name="Caminho 23" d="M116.487,400a.487.487,0,0,0-.487.487v1.95a.487.487,0,1,0,.975,0v-1.95A.487.487,0,0,0,116.487,400Z" transform="translate(-116 -400)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_32" data-name="Grupo 32" transform="translate(6.476 26.32)">
+                        <g id="Grupo_31" data-name="Grupo 31">
+                          <path id="Caminho_24" data-name="Caminho 24" d="M148.487,432a.487.487,0,0,0-.487.487v1.95a.487.487,0,0,0,.975,0v-1.95A.487.487,0,0,0,148.487,432Z" transform="translate(-148 -432)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                      <g id="Grupo_34" data-name="Grupo 34" transform="translate(10.794 26.32)">
+                        <g id="Grupo_33" data-name="Grupo 33" transform="translate(0)">
+                          <path id="Caminho_25" data-name="Caminho 25" d="M212.487,432a.487.487,0,0,0-.487.487v1.95a.487.487,0,0,0,.975,0v-1.95A.487.487,0,0,0,212.487,432Z" transform="translate(-212 -432)" fill="#2d2d2d"/>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <label class="custom-label" for="banheiros">Banheiros</label>
+              </div>
+              <div class="input-wrapper">
+                <input type="number" class="form-control form-control-sm" id="banheiros"
+                  autocomplete="off" formControlName="banheiros" placeholder="1">
+                <span class="material-icons number-control-plus" (click)="aumentarNumero('banheiros')">add</span>
+                <span class="material-icons number-control-minus" (click)="diminuirNumero('banheiros')">remove</span>
+              </div>
+            </div>
+            <div class="form-group col-12 col-sm-6 mb-3 col-md-2">
+              <div class="label-icon-wrapper">
+                <div class="label-icon">
+                  <svg id="sala" xmlns="http://www.w3.org/2000/svg" width="25.576" height="23.025" viewBox="0 0 25.576 23.025">
+                    <path id="Caminho_26" data-name="Caminho 26" d="M23.51,37.062h-.588V32.481h1.905a.749.749,0,0,0,.728-.925L24.41,26.819a.75.75,0,0,0-.728-.573H20.664a.749.749,0,0,0-.728.573L18.79,31.555a.75.75,0,0,0,.728.925h1.905v1.8a2.235,2.235,0,0,0-1.175-.333H5.329a2.25,2.25,0,0,0-2.248,2.248v.868H2.067A2.069,2.069,0,0,0,0,39.128v6.765A2.069,2.069,0,0,0,2.067,47.96H23.51a2.069,2.069,0,0,0,2.066-2.067V39.128a2.069,2.069,0,0,0-2.066-2.066Zm-21.443,9.4a.569.569,0,0,1-.568-.568V39.128a.568.568,0,0,1,.568-.568H4.742a.568.568,0,0,1,.568.568v6.765a.569.569,0,0,1-.568.568ZM5.329,35.444H20.248a.75.75,0,0,1,.749.749v.868h-.162a2.069,2.069,0,0,0-2.066,2.066v2.633H6.808V39.128a2.069,2.069,0,0,0-2.066-2.066H4.579v-.868a.75.75,0,0,1,.749-.749ZM6.808,45.893V43.26H18.769v2.633a2.06,2.06,0,0,0,.08.568H6.728a2.06,2.06,0,0,0,.08-.568Zm13.459,0V39.128a.568.568,0,0,1,.568-.568H23.51a.568.568,0,0,1,.568.568v6.765a.569.569,0,0,1-.568.568H20.835A.569.569,0,0,1,20.267,45.893Zm2.824-18.149.783,3.238h-3.4l.783-3.238Zm0,0" transform="translate(0 -24.935)" fill="#2d2d2d"/>
+                    <path id="Caminho_27" data-name="Caminho 27" d="M19.835,6.56H32.516a.749.749,0,0,0,.749-.749V.749A.749.749,0,0,0,32.516,0H19.835a.749.749,0,0,0-.749.749V5.811A.749.749,0,0,0,19.835,6.56ZM20.584,1.5H31.767V5.061H20.584Zm0,0" transform="translate(-18.133 0)" fill="#2d2d2d"/>
+                  </svg>
+                </div>
+                <label class="custom-label" for="salas">Salas</label>
+              </div>
+              <div class="input-wrapper">
+                <input type="number" class="form-control form-control-sm" id="salas"
+                  autocomplete="off" formControlName="salas" placeholder="1">
+                <span class="material-icons number-control-plus" (click)="aumentarNumero('salas')">add</span>
+                <span class="material-icons number-control-minus" (click)="diminuirNumero('salas')">remove</span>
+              </div>
+            </div>
+            <div class="form-group col-12 col-md-2 col-sm-6 mb-3" *ngIf="mainForm.get('imovel').value == 'casa'">
+              <div class="label-icon-wrapper">
+                <div class="label-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="31.26" height="27.237" viewBox="0 0 31.26 27.237">
+                    <g id="andares" transform="translate(0 0)">
+                      <g id="Grupo_38" data-name="Grupo 38" transform="translate(0 0)">
+                        <g id="Grupo_37" data-name="Grupo 37">
+                          <path id="Caminho_28" data-name="Caminho 28" d="M110.085,325.3v4.884a.611.611,0,0,0,.611.611h4.884a.611.611,0,0,0,.611-.611V325.3a.611.611,0,0,0-.611-.611H110.7A.611.611,0,0,0,110.085,325.3Zm3.663.611h1.221v1.221h-1.221Zm0,2.442h1.221v1.221h-1.221Zm-2.442-2.442h1.221v1.221h-1.221Zm0,2.442h1.221v1.221h-1.221Z" transform="translate(-103.364 -306.875)"/>
+                          <path id="Caminho_29" data-name="Caminho 29" d="M30.649,44.609H22.1V39.153l.376.217a.611.611,0,0,0,.611-1.057l-9.163-5.29a.61.61,0,0,0-.611,0l-9.163,5.29a.611.611,0,1,0,.611,1.057l.376-.217v8.041L.306,49.981a.611.611,0,1,0,.611,1.057l.376-.217v8.746a.611.611,0,0,0,.611.611H29.358a.611.611,0,0,0,.611-.611V51.12h.681a.611.611,0,0,0,.611-.611v-5.29A.611.611,0,0,0,30.649,44.609ZM23.934,45.83h2.442V49.9H23.934Zm-1.221,0V49.9H20.27V45.83ZM6.354,43.044H8.249a.611.611,0,1,0,0-1.221H6.354V38.448l7.261-4.192,7.261,4.192v6.161H9.774a.609.609,0,0,0-.073,0l-.018,0-.056.011-.018,0a.6.6,0,0,0-.065.022h0a.607.607,0,0,0-.067.033l0,0-3.115,1.8Zm9.032,2.786v1.925L12.052,45.83Zm1.649,13.127H2.513v-8.84l7.261-4.192,7.261,4.192Zm-.428-10.5V45.83h2.442v4.04Zm12.14,10.5H18.256v-1.2H28.747Zm0-2.422H18.256V50.821l.376.217,0,0a.609.609,0,0,0,.067.033l.008,0a.6.6,0,0,0,.06.02l.022.006.049.01.024,0a.6.6,0,0,0,.061,0h9.819v1.159H26.242a.611.611,0,1,0,0,1.221h2.505ZM30.039,49.9H27.6V45.83h2.442Z" transform="translate(0 -32.94)"/>
+                          <path id="Caminho_30" data-name="Caminho 30" d="M191.1,125.372h2.747a.611.611,0,0,0,.611-.611v-3.53a.611.611,0,0,0-.611-.611H191.1a.611.611,0,0,0-.611.611v3.53A.611.611,0,0,0,191.1,125.372Zm.611-3.53h1.526v2.309h-1.526Z" transform="translate(-178.862 -115.268)"/>
+                          <path id="Caminho_31" data-name="Caminho 31" d="M391.47,349.689h-.014a.611.611,0,1,0,0,1.221h.014a.611.611,0,0,0,0-1.221Z" transform="translate(-366.982 -330.35)"/>
+                          <path id="Caminho_32" data-name="Caminho 32" d="M154.444,179.655h.014a.611.611,0,0,0,0-1.221h-.014a.611.611,0,0,0,0,1.221Z" transform="translate(-144.441 -169.551)"/>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <label class="custom-label" for="andares">Andares</label>
+              </div>
+              <div class="input-wrapper">
+                <input type="number" class="form-control form-control-sm" id="andares"
+                  autocomplete="off" formControlName="andares" placeholder="1" (input)="calcularPreco()">
+                <span class="material-icons number-control-plus" (click)="aumentarNumero('andares')">add</span>
+                <span class="material-icons number-control-minus" (click)="diminuirNumero('andares')">remove</span>
+              </div>
+            </div>
+            <div class="form-group col-12 col-md-4 mb-3" [ngClass]="{'col-sm-6': mainForm.get('imovel').value != 'casa', 'col-sm-12': mainForm.get('imovel').value == 'casa'}">
+              <label class="custom-label" for="andares">Possui área externa?</label>
+              <div class="radio-row">
+                <div class="radio-wrapper">
+                  <input type="radio" class="" id="true" (click)="handleRadio($event)"
+                    formControlName="areaExterna" [value]="true">
+                  <span class="radio-label">Sim</span>
+                </div>
+                <div class="radio-wrapper">
+                  <input type="radio" class="" id="false" (click)="handleRadio($event)"
+                    formControlName="areaExterna" [value]="false" checked="checked">
+                  <span class="radio-label">Não</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row row">
+            <div class="form-group col-12 col-md-6 mb-3">
+              <label class="custom-label" for="bairro">Bairro<span class="obrigatorio"> *</span></label>
+              <ngx-select-dropdown (change)="mudarBairro($event)" [multiple]="false"
+              formControlName="bairro" [config]="config" [options]="listaBairros"
+              class="form-control form-control-sm" id="bairro"></ngx-select-dropdown>
+            </div>
+            <div class="form-group col-12 col-md-6 mb-3">
+              <label class="custom-label" for="nome">Qual é o seu nome? <span class="obrigatorio"> *</span></label>
+              <input type="text" class="form-control form-control-sm" id="nome"
+                autocomplete="off" formControlName="nome">
+            </div>
+            <div class="form-group col-12 col-md-6 mb-3">
+              <label class="custom-label" for="telefone">Telefone <span class="obrigatorio"> *</span></label>
+              <input placeholder="(00) 00000-0000" [textMask]="{mask: mascaraTelefone}" type="text" class="form-control form-control-sm" id="telefone"
+                autocomplete="off" formControlName="telefone">
+            </div>
+            <div class="form-group col-12 col-md-6 mb-3">
+              <label class="custom-label" for="email">E-mail <span class="obrigatorio"> *</span></label>
+              <input type="text" class="form-control form-control-sm" id="email"
+                autocomplete="off" formControlName="email">
+            </div>
+          </div>
+          <div class="form-row row">
+            <div class="form-group col-12 mb-3">
+              <label class="custom-label" for="extra">Algum comentário que queira fazer sobre a limpeza?</label>
+              <input type="text" class="form-control form-control-sm" id="extra"
+                autocomplete="off" formControlName="extra">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="right-container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="title-secondary">{{'Limpeza ' + mainForm.get('limpeza').value}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label class="info-label">Preço total: </label>
+        <span class="info-span" id="preco-total"> R$ {{precoFinal}}</span>
+      </div>
+      <div class="col-12">
+        <label class="info-label">Tempo estimado: </label>
+        <span class="info-span"> {{tempoEstimadoDisplay}} horas</span>
+      </div>
+      <div class="col-12 mb-8">
+        <label class="info-label">Escolha uma data:</label>
+        <form [formGroup]="mainForm">
+          <input type="text"
+            placeholder="Escolha uma data"
+            class="form-control"
+            bsDatepicker
+            formControlName="data">
+        </form>
+      </div>
+      <div class="col-12 mb-8">
+        <label class="info-label">Escolha um horário:</label>
+        <form [formGroup]="mainForm" class="time-picker-form">
+          <input type="text" class="form-control form-control-sm time-picker-input" id="horario"
+            autocomplete="off" formControlName="horario" (click)="mostrarHorarios()">
+          <div class="time-picker-wrapper" *ngIf="abrirHorarios">
+            <div class="time-picker">
+              <div class="time-wrapper" *ngFor="let hora of listaHorarios; let i = index;" [id]="hora.id" (click)="selecionarTempo(hora.id)" [ngClass]="{'blocked-time': (hora.id + tempoEstimado) > 18}">
+                {{hora.display}}
+              </div>
+            </div>
+            <div class="ok-btn-wrapper">
+              <button class="ok-btn" (click)="salvarHorario()">Okay</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-12">
+        <button class="agendar-btn">Agendar Limpeza</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div bsModal #modalTemplate="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">O que está incluso?</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalTemplate.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="price-table-wrapper">
+          <div class="price-table-header">
+            <div class="header" id="comodo" style="flex: 2">
+              Cômodo
+            </div>
+            <div class="header" id="itens" style="flex: 5.33">
+              Itens Inclusos No Serviço
+            </div>
+            <div class="header" id="expressa-info">
+              Limpeza Expressa
+            </div>
+            <div class="header" id="pesada-info">
+              Faxina Pesada
+            </div>
+          </div>
+          <div class="price-table">
+            <div class="block">
+              <div class="table-title">
+                <h5>Banheiro</h5>
+              </div>
+              <div class="table-rows">
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza/Lavagem: Chão; Vaso Sanitário; Box; Espelho; Bancada da Pia; Nichos e suportes; torneiras;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza externa e secagem de armários;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza de portas e janelas;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza interna de armários.
+                  </div>
+                  <div class="column">
+                    <span class="material-icons extra">price_check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="table-title">
+                <h5>Quartos</h5>
+              </div>
+              <div class="table-rows">
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza: Chão; Espelhos; Superfícies de móveis;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Arrumação de cama;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Organização de roupas expostas;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza de janelas e vidros;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons extra">price_check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="table-title">
+                <h5>Sala</h5>
+              </div>
+              <div class="table-rows">
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza: Chão; Superfícies de móveis; Portas de madeira e maçanetas; bordas da TV;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza de janelas e portas de vidro;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons nao-incluso">close</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="table-title">
+                <h5>Cozinha</h5>
+              </div>
+              <div class="table-rows">
+                <div class="table-row">
+                  <div class="column">
+                    Louças: Lavar, secar e guardar;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza do chão (varrer e passar pano);
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons nao-incluso">close</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Lavagem do chão (jogar água e esfregar);
+                  </div>
+                  <div class="column">
+                    <span class="material-icons extra">price_check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza/higienização: Torneiras; Pia; fogão (externa); bancadas e superfícies; armários (externa); Geladeira (externa); Micro-ondas (externa)
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza/higienização Interna: Fogão; Micro-ondas; Geladeira; Armários; *
+                  </div>
+                  <div class="column">
+                    <span class="material-icons extra">price_check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza/higienização de paredes;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons extra">price_check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="table-title">
+                <h5>Área Externa</h5>
+              </div>
+              <div class="table-rows">
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza/Lavagem: Chão; superfícies.
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons incluso">check</span>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="column">
+                    Limpeza de churrasqueira;
+                  </div>
+                  <div class="column">
+                    <span class="material-icons nao-incluso">close</span>
+                  </div>
+                  <div class="column">
+                    <span class="material-icons extra">price_check</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

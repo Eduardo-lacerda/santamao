@@ -1,0 +1,571 @@
+$mainColor: #E27720;
+
+.choice-btn {
+  width: 100%;
+  outline: none !important;
+  color: #2D2D2D;
+  height: 47px;
+  font-size: 17px;
+  position: relative;
+  z-index: 0;
+  padding-left: 16px;
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+#apartamento .choice-btn {
+  padding-left: 38px;
+}
+
+#casa .choice-icon-wrapper {
+  top: 4px;
+}
+
+#casa .choice-btn {
+  padding-left: 27px;
+}
+
+.choice-wrapper.chosen .choice-btn {
+  background: $mainColor;
+  border: none;
+  color: white;
+}
+
+.info-icon-wrapper {
+  position: absolute;
+  top: 13px;
+  height: 22px;
+  right: 10px;
+  color: #2D2D2D;
+  cursor: pointer;
+}
+
+.chosen .info-icon-wrapper {
+  color: white;
+}
+
+.choice-wrapper {
+  position: relative;
+  width: 45%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.choices-row .choice-wrapper:last-child {
+  margin-right: 0;
+}
+
+.choice-icon-wrapper svg {
+  width: 26px;
+}
+
+.choice-icon-wrapper {
+  position: absolute;
+  top: 1px;
+  left: 15px;
+  display: inline-block;
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+.custom-label {
+  cursor: auto;
+  font-size: 17px;
+  margin-bottom: 7px;
+}
+
+.choice-wrapper.chosen .choice-icon-wrapper svg path {
+  fill: white;
+}
+
+.choice-icon-wrapper svg path {
+  fill: #2D2D2D;
+}
+
+.title {
+  font-size: 35px;
+  font-weight: 800;
+  color: $mainColor;
+}
+
+.left-container {
+  width: 65%;
+  background: white;
+  border-radius: 4px;
+  padding: 30px;
+  display: inline-block;
+  margin-right: 2%;
+}
+
+.main-container {
+  background: #E8E8E8;
+  height: auto;
+  padding: 20px;
+  display: flex;
+}
+
+.choice-wrapper#casa {
+  width: 39%;
+}
+
+.choice-wrapper#apartamento {
+  width: 57%;
+}
+
+.form-group {
+  padding-right: 0 !important;
+}
+
+.label-icon {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.label-icon svg {
+  width: 18px;
+}
+
+.form-row {
+  margin-bottom: 12px;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input {
+  height: 42px;
+  background: white !important;
+  border: 1px solid #cecece !important;
+  font-size: 17px !important;
+}
+
+input[type="number"] {
+  padding-left: 46%;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.number-control-plus {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  color: $mainColor;
+  cursor: pointer;
+}
+
+.number-control-minus {
+  position: absolute;
+  top: 7px;
+  left: 4px;
+  color: $mainColor;
+  cursor: pointer;
+}
+
+.radio-wrapper input {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  padding: 4px;
+  background-clip: content-box !important;
+  border: 1px solid #6d6d6d;
+  border-radius: 50%;
+}
+
+input:checked {
+  background-color: $mainColor !important;
+  border-color: $mainColor !important;
+}
+
+span.obrigatorio {
+  color: red;
+}
+
+.radio-wrapper span {
+  font-size: 14px;
+}
+
+.radio-wrapper {
+  display: inline-flex;
+  margin-right: 14px;
+  align-items: center;
+}
+
+.radio-row {
+  margin-top: 8px;
+}
+
+.right-container {
+  display: inline-block;
+  width: 33%;
+  background: white;
+  border-radius: 4px;
+  padding: 30px;
+  height: 605px;
+  position: relative;
+  height: fit-content;
+}
+
+.agendar-btn {
+  border: none;
+  background: #e27720;
+  color: white;
+  width: 152px;
+  height: 40px;
+  border-radius: 4px;
+  float: right;
+  margin-top: 20px;
+}
+
+.title-secondary {
+  font-size: 28px;
+  font-weight: 800;
+  color: $mainColor;
+}
+
+.info-label {
+  cursor: auto;
+  font-size: 19px;
+  margin-bottom: 3px;
+  font-weight: 600;
+  color: #2D2D2D;
+}
+
+.info-span#preco-total {
+  color: $mainColor !important;
+  -webkit-text-stroke: 1px $mainColor;
+}
+
+.info-span {
+  -webkit-text-stroke: 1px #2D2D2D;
+  color: #2D2D2D;
+}
+
+
+
+
+
+.table-title {
+  color: $mainColor;
+  align-self: center;
+}
+
+.price-table {
+  min-width: 540px;
+}
+
+.column {
+  flex: 0.5;
+  align-self: center;
+  text-align: center;
+  padding: 4px;
+}
+
+.table-row .column:nth-child(1) {
+  flex: 2;
+}
+
+.table-title h5 {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.price-table-wrapper {
+  overflow-x: auto;
+}
+
+.price-table-header {
+  display: flex;
+  align-items: center;
+  height: 82px;
+  background: $mainColor;
+  min-width: 540px;
+}
+
+.price-table-header .header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  flex: 1.33;
+}
+
+.table-row {
+  margin: 6px 0;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+}
+
+.table-rows {
+  flex: 4;
+}
+
+.table-title {
+  text-align: center;
+  flex: 1;
+}
+
+.block {
+  display: flex;
+  margin: 15px 0;
+  background: whitesmoke;
+}
+
+.table-rows .table-row:last-child {
+  border: none;
+}
+
+.modal-title {
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.modal-header .close {
+  background: transparent;
+  border: none;
+  font-size: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.incluso {
+  color: #3dc33d;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.nao-incluso {
+  color: red;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.extra {
+  font-size: 25px;
+  font-weight: 800;
+  color: #5a5a5a;
+}
+
+#expressa-wrapper {
+  width: 49%;
+}
+
+#pesada-wrapper {
+  width: 47%;
+}
+
+.ngx-dropdown-button {
+  border: none !important;
+  padding: 0 !important;
+  font-size: 17px !important;
+  color: #212529 !important;
+}
+
+.ngx-dropdown-container input {
+  border-radius: 4px !important;
+  padding-left: 7px !important;
+  font-size: 15px !important;
+}
+
+.ngx-dropdown-container label {
+  padding-left: 5px !important;
+  line-height: 30px !important;
+}
+
+
+/* @media all and (max-width: 1125px) {
+  .choice-icon-wrapper {
+    display: none;
+  }
+} */
+
+@media screen and (max-width: 630px) {
+  .left-container {
+    width: 100%;
+    display: block;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .right-container {
+    width: 100%;
+    display: block;
+  }
+
+  .main-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .info-span {
+    display: block;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .label-icon {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 1077px) and (min-width: 769px) {
+  .label-icon {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1077px) {
+  .label-icon {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 85%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.time-picker::-webkit-scrollbar-thumb {
+  background: #D25E00;
+  border-radius: 10px;
+}
+
+.time-picker::-webkit-scrollbar-track {
+  background: #F2E6CD;
+  border-radius: 10px;
+}
+
+.time-picker::-webkit-scrollbar {
+  width: 9px;
+}
+
+.time-picker-wrapper {
+  width: 120px;
+  padding: 11px;
+  background: #FFF8E9;
+  border-radius: 8px;
+  position: absolute;
+  top: 45px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.time-picker {
+  overflow-y: auto;
+  height: 245px;
+  padding: 8px;
+}
+
+.time-wrapper {
+  color: #212121;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.time-picker .chosen-time:first-child {
+  border-radius: 4px 4px 0 0;
+}
+
+.time-picker .chosen-time:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
+.chosen-time {
+  background: #D25E00;
+  color: white !important;
+}
+
+.blocked-time {
+  color: #7D7D7D;
+  cursor: auto;
+}
+
+.time-picker-form {
+  position: relative;
+}
+
+.ok-btn-wrapper {
+  margin-top: 13px;
+}
+
+button.ok-btn {
+  border: none;
+  background: #d25e00;
+  color: white;
+  width: 100%;
+  border-radius: 3px;
+  height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.bs-datepicker-body thead th {
+  color: #212121;
+}
+
+.bs-datepicker-body table td {
+  color: #212121;
+}
+
+.bs-datepicker-head {
+  background-color: #e27720 !important;
+}
+
+.bs-datepicker-body {
+  background-color: #FFF8E9 !important;
+}
+
+.theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span, .theme-green .bs-datepicker-body table td span[class*="select-"]:after, .theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+  background-color: #D25E00 !important;
+  border-radius: 5px;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: #e27720 !important;
+}
