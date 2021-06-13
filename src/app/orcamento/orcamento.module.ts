@@ -9,7 +9,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TextMaskModule } from 'angular2-text-mask';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { HttpClientModule } from '@angular/common/http';
+import { OrcamentoService } from '../shared/services/orcamento.service';
 @NgModule({
   declarations: [
     OrcamentoComponent,
@@ -22,8 +24,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     CommonModule,
     TextMaskModule,
     SelectDropDownModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    TooltipModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [OrcamentoService],
 })
 export class OrcamentoModule { }
