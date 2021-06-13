@@ -4,7 +4,7 @@ const dbConfig = require("./backend/config/db.config.js");
 var express = require('express');
 var app = express();
 const path = require('path')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 //Redirecionamento HTTPS
 /* app.use((req, res, next) => { //Cria um middleware onde todas as requests passam por ele
