@@ -355,7 +355,7 @@ span.obrigatorio {
 }
 
 .extra {
-  font-size: 25px;
+  font-size: 14px;
   font-weight: 800;
   color: #5a5a5a;
 }
@@ -474,12 +474,14 @@ span.obrigatorio {
 .time-picker-wrapper {
   width: 120px;
   padding: 11px;
-  background: #FFF8E9;
+  background: white;
   border-radius: 8px;
   position: absolute;
   top: 45px;
   right: 50%;
   transform: translateX(50%);
+  box-shadow: 0 0 10px 0 #aaa;
+  z-index: 2;
 }
 
 .time-picker {
@@ -506,8 +508,8 @@ span.obrigatorio {
 }
 
 .chosen-time {
-  background: #D25E00;
-  color: white !important;
+  background: #ffcea7;
+  color: #292929 !important;
 }
 
 .blocked-time {
@@ -533,10 +535,37 @@ button.ok-btn {
 }
 
 
+.incluso-wrapper {
+  cursor: pointer;
+  margin-bottom: 4px;
+  display: none;
+}
 
+.incluso-wrapper span {
+  display: inline-block;
+  margin-right: 13px;
+  color: #b95402;
+}
 
+.incluso-wrapper .info-icon-wrapper {
+  position: relative;
+  top: 6px;
+  display: inline-block;
+}
 
+@media screen and (max-width: 470px) {
+  .choice-wrapper .info-icon-wrapper {
+    display: none;
+  }
 
+  .choice-btn {
+    padding-left: 30px
+  }
+
+  .incluso-wrapper {
+    display: block;
+  }
+}
 
 
 
@@ -546,11 +575,11 @@ button.ok-btn {
 }
 
 .bs-datepicker-body thead th {
-  color: #212121;
+  color: #212121 !important;
 }
 
 .bs-datepicker-body table td {
-  color: #212121;
+  color: #212121 !important;
 }
 
 .bs-datepicker-head {
@@ -568,4 +597,62 @@ button.ok-btn {
 
 .theme-green .bs-datepicker-body table td.week span {
   color: #e27720 !important;
+}
+
+
+.ngx-dropdown-container .ngx-dropdown-list-container ul.selected-items li {
+  background-color: #e27720 !important;
+  border-radius: 3px;
+}
+
+.ngx-dropdown-container .ngx-dropdown-list-container ul li {
+  font-size: 16px !important;
+}
+
+.info-tooltip {
+  display: inline-flex !important;
+  vertical-align: middle;
+  margin-left: 4px;
+  font-size: 21px !important;
+  margin-bottom: 2px;
+}
+
+.info-span.esconder-preco {
+  background: #c5c5c5;
+  color: #c5c5c5 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.transparent {
+  color: transparent;
+}
+
+.mensagem-esconder-preco {
+  display: block;
+  line-height: 16px;
+  margin-bottom: 6px;
+  color: #d86f19;
+  font-size: 14px;
+}
+
+span.error-msg {
+  color: red;
+}
+
+.custom-cb-wrapper {
+  margin-bottom: 6px;
+}
+
+.custom-check-box {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  padding: 0;
+  min-height: 18px;
+  margin-right: 8px;
+}
+
+.custom-cb-wrapper span {
+  font-size: 14px;
+  vertical-align: top;
 }

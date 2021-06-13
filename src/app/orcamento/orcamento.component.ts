@@ -2,6 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@a
 import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { DatePipe } from '@angular/common';
+import { OrcamentoService } from '../shared/services/orcamento.service';
 
 
 @Component({
@@ -17,6 +19,7 @@ export class OrcamentoComponent implements OnInit {
   mascaraTelefone: any;
   listaBairros: Array<any> = [];
   @ViewChild('modalTemplate') modalTemplate: ModalDirective;
+  @ViewChild('messageModal') messageModal: ModalDirective;
   config: any;
   precoFinal: number = 0;
   locale = 'pt';
@@ -25,11 +28,20 @@ export class OrcamentoComponent implements OnInit {
   horario: any;
   listaHorarios: Array<any>;
   tempoEstimadoDisplay = '4';
+  mostrarPreco: boolean = false;
+  submetido: boolean = false;
+  emailInvalido: boolean = true;
+  telefoneInvalido: boolean = true;
+  erroBairro: boolean = false;
+  erroNome: boolean = false;
+  erroTelefone: boolean = false;
+  erroEmail: boolean = false;
 
   constructor(
       private formBuilder: FormBuilder,
       private modalService: BsModalService,
       private localeService: BsLocaleService,
+      private mainService: OrcamentoService
     ) {
   }
 
@@ -84,15 +96,30 @@ export class OrcamentoComponent implements OnInit {
       bairro: ['', Validators.required],
       nome: ['', Validators.required],
       telefone: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       extra: [''],
       data: [new Date(), Validators.required],
-      horario: ['', Validators.required]
+      horario: ['', Validators.required],
+      extraBanheiro: [false],
+      extraQuarto: [false],
+      extraCozinhaChao: [false],
+      extraCozinhaInterna: [false],
+      extraCozinhaParedes: [false],
+      extraChurrasqueira: [false],
     });
     this.calcularPreco();
+    var that = this;
+    $(document).on('click', function(event) {
+      var $target = $(event.target);
+      if(!$target.closest('#time-picker-wrapper').length && that.abrirHorarios == true) {
+        if(!$target.closest('#horario').length)
+          that.abrirHorarios = false;
+      }
+    });
   }
 
   mostrarHorarios() {
+    var that = this;
     this.abrirHorarios = true;
   }
 
@@ -148,6 +175,13 @@ export class OrcamentoComponent implements OnInit {
 
   }
 
+  handleExtra(event) {
+    var id = event.target.id;
+    var checked = event.target.checked;
+    this.mainForm.get(id).setValue(checked);
+    this.calcularPreco();
+  }
+
   calcularPreco(_areaExterna?) {
     var imovel = this.mainForm.get('imovel').value;
     var quartos = this.mainForm.get('quartos').value;
@@ -200,8 +234,38 @@ export class OrcamentoComponent implements OnInit {
       resultado = resultado * multiplicador;
     }
 
-    if(this.mainForm.get('limpeza').value == 'Pesada')
+    if(this.mainForm.get('limpeza').value == 'Pesada') {
       resultado = resultado * 1.8;
+    }
+
+
+    else {
+      var extraBanheiro = this.mainForm.get('extraBanheiro').value;
+      var extraQuarto = this.mainForm.get('extraQuarto').value;
+      var extraCozinhaChao = this.mainForm.get('extraCozinhaChao').value;
+      var extraCozinhaInterna = this.mainForm.get('extraCozinhaInterna').value;
+      var extraCozinhaParedes = this.mainForm.get('extraCozinhaParedes').value;
+      console.log(extraQuarto)
+      console.log(resultado)
+      if(extraBanheiro)
+        resultado = resultado + 12;
+
+      if(extraQuarto)
+        resultado = resultado + 25;
+      console.log(resultado)
+      if(extraCozinhaChao)
+        resultado = resultado + 10;
+
+      if(extraCozinhaInterna)
+        resultado = resultado + 30;
+
+      if(extraCozinhaParedes)
+        resultado = resultado + 12;
+    }
+
+    var extraChurrasqueira = this.mainForm.get('extraChurrasqueira').value;
+    if(extraChurrasqueira)
+      resultado = resultado + 30;
 
     resultado = resultado.toFixed(2);
     this.precoFinal = resultado;
@@ -255,6 +319,108 @@ export class OrcamentoComponent implements OnInit {
         return horario.id == final;
       }).display;
       this.horario = horarioInicio + ' - ' + horarioFim;
+    }
+  }
+
+  handleTelefoneInput() {
+    var telefone = this.mainForm.get('telefone').value;
+    telefone = telefone.replace(/[{()}]/g, '');
+    telefone = telefone.replace(/_/g, '');
+    telefone = telefone.replace(/-/g, '');
+    telefone = telefone.replace(' ', '');
+
+    if(telefone.length >= 11) {
+      this.telefoneInvalido = false;
+      if(!this.emailInvalido)
+        this.mostrarPreco = true;
+    }
+    else {
+      this.telefoneInvalido = true;
+      this.mostrarPreco = false;
+    }
+  }
+
+  handleEmailInput() {
+    var email = this.mainForm.get('email');
+    if(email.valid) {
+      this.emailInvalido = false;
+      if(!this.telefoneInvalido)
+        this.mostrarPreco = true;
+    }
+    else {
+      this.mostrarPreco = false;
+      this.emailInvalido = true;
+    }
+  }
+
+  agendarLimpeza() {
+    this.submetido = true;
+    if(this.mainForm.get('telefone').invalid) {
+      this.erroTelefone = true;
+    }
+    var telefone = this.mainForm.get('telefone').value;
+    telefone = telefone.replace(/[{()}]/g, '');
+    telefone = telefone.replace(/_/g, '');
+    telefone = telefone.replace(/-/g, '');
+    telefone = telefone.replace(' ', '');
+
+    if(telefone.length >= 11) {
+      this.erroTelefone = true;
+    }
+    else
+      this.erroTelefone = false;
+    if(this.mainForm.get('email').invalid) {
+      this.erroEmail = true;
+    }
+    else
+      this.erroEmail = false;
+    if(this.mainForm.get('bairro').invalid) {
+      this.erroBairro = true;
+    }
+    else
+      this.erroBairro = false;
+    if(this.mainForm.get('nome').invalid) {
+      this.erroNome = true;
+    }
+    else
+      this.erroNome = false;
+
+    if(this.mainForm.valid) {
+      var wppApi = "https://api.whatsapp.com/send?phone=553591843377&text=";
+      var pipe = new DatePipe('pt-BR');
+      var data = pipe.transform(this.mainForm.get('data').value, 'dd/MM/yyyy');
+      var horario = this.mainForm.get('horario').value
+      var wppMessage = "Olá, eu gostaria de agendar uma limpeza na data " + data
+      + ', no seguinte horário: '+horario;
+
+      var body = {};
+      body["nome"] = this.mainForm.get('nome').value;
+      body["email"] = this.mainForm.get('email').value;
+      body["bairro"] = this.mainForm.get('bairro').value;
+      body["endereco"] = "";
+      body["telefone"] = this.mainForm.get('telefone').value;
+      body["comentario"] = this.mainForm.get('extra').value;
+      body["limpeza"] = this.mainForm.get('limpeza').value;
+      body["quartos"] = this.mainForm.get('quartos').value;
+      body["banheiros"] = this.mainForm.get('banheiros').value;
+      body["salas"] = this.mainForm.get('salas').value;
+      body["andares"] = this.mainForm.get('andares').value;
+      body["areaExterna"] = this.mainForm.get('areaExterna').value;
+      body["extraBanheiro"] = this.mainForm.get('extraBanheiro').value;
+      body["extraQuarto"] = this.mainForm.get('extraQuarto').value;
+      body["extraCozinhaChao"] = this.mainForm.get('extraCozinhaChao').value;
+      body["extraCozinhaInterna"] = this.mainForm.get('extraCozinhaInterna').value;
+      body["extraCozinhaParedess"] = this.mainForm.get('extraCozinhaParedes').value;
+      body["extraChurrasqueira"] = this.mainForm.get('extraChurrasqueira').value;
+      body["preco"] = this.precoFinal;
+
+      console.log(body);
+      this.mainService.salvarOrcamento(body).subscribe(res => {
+        console.log(res);
+      })
+      var wppUrl = wppApi + encodeURI(wppMessage);
+      window.open(wppUrl, "_blank");
+      this.messageModal.show();
     }
   }
 }

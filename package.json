@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "nodemon server.js",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "install": "npm install",
+    "postinstall": "npm run build"
   },
   "private": true,
   "dependencies": {
@@ -19,15 +21,26 @@
     "@angular/platform-browser-dynamic": "~12.0.2",
     "@angular/router": "~12.0.2",
     "@ngx-translate/core": "^13.0.0",
+    "@turinggroup/serverless-express-custom-domain-middleware": "^1.1.0",
     "angular-input-masks": "^4.4.1",
     "angular2-text-mask": "^9.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "bootstrap": "^5.0.1",
     "brinput": "^1.0.6",
     "brmasker4": "^1.0.3",
+    "config": "^3.3.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.9.2",
     "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.14",
     "ng2-telefone-mask": "^1.0.24",
     "ngx-bootstrap": "^6.2.0",
     "ngx-select-dropdown": "^2.1.0",
+    "nodemailer": "^6.6.1",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "telefone-mask-ng2": "^1.0.7",
     "tslib": "^2.1.0",
@@ -46,6 +59,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "typescript": "~4.2.3"
+    "typescript": "~4.2.3",
+    "nodemon": "^2.0.7"
   }
 }

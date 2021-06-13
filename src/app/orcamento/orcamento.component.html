@@ -13,6 +13,12 @@
           <div class="form-row row">
             <div class="form-group col-12 col-sm-12 col-lg-6 mb-3">
               <label class="custom-label">Qual limpeza o seu lar precisa?</label>
+              <div class="incluso-wrapper" (click)="abrirModal(modalTemplate)">
+                <span>O que está incluso</span>
+                <div class="info-icon-wrapper" (click)="abrirModal(modalTemplate)">
+                  <span class="material-icons">help_outline</span>
+                </div>
+              </div>
               <div class="choices-row">
                 <div class="choice-wrapper chosen" id="expressa-wrapper">
                   <button class="form-control form-control-sm choice-btn" id="expressa" (click)="mudarLimpeza('Expressa')" autocomplete="off">Expressa</button>
@@ -246,24 +252,30 @@
           <div class="form-row row">
             <div class="form-group col-12 col-md-6 mb-3">
               <label class="custom-label" for="bairro">Bairro<span class="obrigatorio"> *</span></label>
-              <ngx-select-dropdown (change)="mudarBairro($event)" [multiple]="false"
+<!--               <ngx-select-dropdown (change)="mudarBairro($event)" [multiple]="false"
               formControlName="bairro" [config]="config" [options]="listaBairros"
-              class="form-control form-control-sm" id="bairro"></ngx-select-dropdown>
+              class="form-control form-control-sm" id="bairro"></ngx-select-dropdown> -->
+              <input type="text" class="form-control form-control-sm" id="bairro"
+              autocomplete="off" formControlName="bairro">
+              <span class="error-msg" *ngIf="erroBairro && submetido">Insira o seu bairro</span>
             </div>
             <div class="form-group col-12 col-md-6 mb-3">
               <label class="custom-label" for="nome">Qual é o seu nome? <span class="obrigatorio"> *</span></label>
               <input type="text" class="form-control form-control-sm" id="nome"
                 autocomplete="off" formControlName="nome">
+              <span class="error-msg" *ngIf="erroNome && submetido">Insira o seu nome</span>
             </div>
             <div class="form-group col-12 col-md-6 mb-3">
               <label class="custom-label" for="telefone">Telefone <span class="obrigatorio"> *</span></label>
               <input placeholder="(00) 00000-0000" [textMask]="{mask: mascaraTelefone}" type="text" class="form-control form-control-sm" id="telefone"
-                autocomplete="off" formControlName="telefone">
+                autocomplete="off" formControlName="telefone" (input)="handleTelefoneInput()">
+                <span class="error-msg" *ngIf="erroTelefone && submetido">Insira um telefone válido</span>
             </div>
             <div class="form-group col-12 col-md-6 mb-3">
               <label class="custom-label" for="email">E-mail <span class="obrigatorio"> *</span></label>
               <input type="text" class="form-control form-control-sm" id="email"
-                autocomplete="off" formControlName="email">
+                autocomplete="off" formControlName="email" (input)="handleEmailInput()">
+              <span class="error-msg" *ngIf="erroEmail && submetido">Insira um e-mail válido</span>
             </div>
           </div>
           <div class="form-row row">
@@ -286,11 +298,16 @@
     <div class="row">
       <div class="col-12">
         <label class="info-label">Preço total: </label>
-        <span class="info-span" id="preco-total"> R$ {{precoFinal}}</span>
+        <span *ngIf="mostrarPreco" class="info-span" id="preco-total"> R$ {{precoFinal}}</span>
+        <ng-container *ngIf="!mostrarPreco">
+          <span class="transparent">*</span><span tooltip="Preencha os campos telefone e e-mail para visualizars o preço" class="info-span esconder-preco">**********</span>
+          <span class="mensagem-esconder-preco">*Preencha os campos telefone e e-mail para visualizars o preço</span>
+        </ng-container>
       </div>
       <div class="col-12">
         <label class="info-label">Tempo estimado: </label>
         <span class="info-span"> {{tempoEstimadoDisplay}} horas</span>
+        <span class="material-icons" class="info-tooltip material-icons" tooltip="O tempo informado é apenas uma estimativa. A profissional pode realizar o serviço em menos tempo.">info</span>
       </div>
       <div class="col-12 mb-8">
         <label class="info-label">Escolha uma data:</label>
@@ -307,7 +324,7 @@
         <form [formGroup]="mainForm" class="time-picker-form">
           <input type="text" class="form-control form-control-sm time-picker-input" id="horario"
             autocomplete="off" formControlName="horario" (click)="mostrarHorarios()">
-          <div class="time-picker-wrapper" *ngIf="abrirHorarios">
+          <div class="time-picker-wrapper" id="time-picker-wrapper" *ngIf="abrirHorarios">
             <div class="time-picker">
               <div class="time-wrapper" *ngFor="let hora of listaHorarios; let i = index;" [id]="hora.id" (click)="selecionarTempo(hora.id)" [ngClass]="{'blocked-time': (hora.id + tempoEstimado) > 18}">
                 {{hora.display}}
@@ -319,8 +336,43 @@
           </div>
         </form>
       </div>
+      <div class="col-12 mb-8">
+        <label class="info-label">Deseja algum serviço extra?</label>
+        <form [formGroup]="mainForm" class="time-picker-form">
+          <div class="custom-cb-wrapper" *ngIf="mainForm.get('limpeza').value == 'Expressa'">
+            <input type="checkbox" class="custom-check-box" id="extraBanheiro"
+            autocomplete="off" formControlName="extraBanheiro" (click)="handleExtra($event)">
+            <span>Banheiro: Limpeza interna de armários - R$ 12,00</span>
+          </div>
+          <div class="custom-cb-wrapper" *ngIf="mainForm.get('limpeza').value == 'Expressa'">
+            <input type="checkbox" class="custom-check-box" id="extraQuarto"
+            autocomplete="off" formControlName="extraQuarto" (click)="handleExtra($event)">
+            <span>Quarto: Limpeza de janelas e vidros - R$ 25,00</span>
+          </div>
+          <div class="custom-cb-wrapper" *ngIf="mainForm.get('limpeza').value == 'Expressa'">
+            <input type="checkbox" class="custom-check-box" id="extraCozinhaChao"
+            autocomplete="off" formControlName="extraCozinhaChao" (click)="handleExtra($event)">
+            <span>Cozinha: Lavagem do chão (jogar água e esfregar) - R$ 10,00</span>
+          </div>
+          <div class="custom-cb-wrapper" *ngIf="mainForm.get('limpeza').value == 'Expressa'">
+            <input type="checkbox" class="custom-check-box" id="extraCozinhaInterna"
+            autocomplete="off" formControlName="extraCozinhaInterna" (click)="handleExtra($event)">
+            <span>Cozinha: Limpeza/higienização Interna: Fogão; Micro-ondas; Geladeira; Armários - R$ 30,00</span>
+          </div>
+          <div class="custom-cb-wrapper" *ngIf="mainForm.get('limpeza').value == 'Expressa'">
+            <input type="checkbox" class="custom-check-box" id="extraCozinhaParedes"
+            autocomplete="off" formControlName="extraCozinhaParedes" (click)="handleExtra($event)">
+            <span>Cozinha: Limpeza/higienização de paredes- R$ 12,00</span>
+          </div>
+          <div class="custom-cb-wrapper">
+            <input type="checkbox" class="custom-check-box" id="extraChurrasqueira"
+            autocomplete="off" formControlName="extraChurrasqueira" (click)="handleExtra($event)">
+            <span>Limpeza de churrasqueira - R$ 30,00</span>
+        </div>
+        </form>
+      </div>
       <div class="col-12">
-        <button class="agendar-btn">Agendar Limpeza</button>
+        <button class="agendar-btn" (click)="agendarLimpeza()">Agendar Limpeza</button>
       </div>
     </div>
   </div>
@@ -398,7 +450,7 @@
                     Limpeza interna de armários.
                   </div>
                   <div class="column">
-                    <span class="material-icons extra">price_check</span>
+                    <span class="extra">R$ 12,00</span>
                   </div>
                   <div class="column">
                     <span class="material-icons incluso">check</span>
@@ -449,7 +501,7 @@
                     Limpeza de janelas e vidros;
                   </div>
                   <div class="column">
-                    <span class="material-icons extra">price_check</span>
+                    <span class="extra">R$ 25,00</span>
                   </div>
                   <div class="column">
                     <span class="material-icons incluso">check</span>
@@ -518,7 +570,7 @@
                     Lavagem do chão (jogar água e esfregar);
                   </div>
                   <div class="column">
-                    <span class="material-icons extra">price_check</span>
+                    <span class="extra">R$ 10,00</span>
                   </div>
                   <div class="column">
                     <span class="material-icons incluso">check</span>
@@ -540,7 +592,7 @@
                     Limpeza/higienização Interna: Fogão; Micro-ondas; Geladeira; Armários; *
                   </div>
                   <div class="column">
-                    <span class="material-icons extra">price_check</span>
+                    <span class="extra">R$ 30,00</span>
                   </div>
                   <div class="column">
                     <span class="material-icons incluso">check</span>
@@ -551,7 +603,7 @@
                     Limpeza/higienização de paredes;
                   </div>
                   <div class="column">
-                    <span class="material-icons extra">price_check</span>
+                    <span class="extra">R$ 12,00</span>
                   </div>
                   <div class="column">
                     <span class="material-icons incluso">check</span>
@@ -583,15 +635,39 @@
                     <span class="material-icons nao-incluso">close</span>
                   </div>
                   <div class="column">
-                    <span class="material-icons extra">price_check</span>
+                    <span class="extra">R$ 30,00</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-12">
+          <button class="agendar-btn" (click)="modalTemplate.hide()">Okay</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<div bsModal #messageModal="bs-modal" class="modal fade message-modal" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Sucesso!</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="messageModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-12">
+          Parabéns! Já recebemos os seus dados, mas iremos encaminhar você para o whatsapp apenas para confirmar a data e o horário.
+        </div>
+        <div class="col-12">
+          <button class="agendar-btn" (click)="messageModal.hide()">Okay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
