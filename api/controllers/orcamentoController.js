@@ -6,16 +6,11 @@ var mongoose = require('mongoose');
 var Orcamento = mongoose.model('Orcamento');
 var nodemailer = require('nodemailer');
 var remetente = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
   service: "gmail",
   secure: true,
   auth:{
   user: 'atendimentosantamao@gmail.com',
   pass: 'onpedro12'},
-  tls: {
-    ciphers:'SSLv3'
-  }
 });
 
 exports.criarOrcamento = async (req, res) => {
