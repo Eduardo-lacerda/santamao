@@ -1,5 +1,5 @@
-/* var child_process = require('child_process');
-child_process.execSync('npm install'); */
+var child_process = require('child_process');
+child_process.execSync('npm install');
 const dbConfig = require("./backend/config/db.config.js");
 var express = require('express');
 var app = express();
