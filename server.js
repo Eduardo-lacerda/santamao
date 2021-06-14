@@ -1,6 +1,6 @@
 var child_process = require('child_process');
 child_process.execSync('npm install');
-const dbConfig = require("./backend/config/db.config.js");
+const dbConfig = require("./config/db.config.js");
 var express = require('express');
 var app = express();
 const path = require('path')
@@ -15,7 +15,7 @@ app.use((req, res, next) => { //Cria um middleware onde todas as requests passam
 });
 //----------------
 
-var db = require("./backend/api/models");
+var db = require("./api/models");
 var mongoose = db.mongoose;
 var bodyParser = require('body-parser');
 
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var orcamentoRoutes = require('./backend/api/routes/orcamentoRoutes');
+var orcamentoRoutes = require('./api/routes/orcamentoRoutes');
 const { error } = require('@angular/compiler/src/util');
 orcamentoRoutes(app); //register the route
 
