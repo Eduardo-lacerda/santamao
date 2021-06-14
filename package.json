@@ -2,8 +2,8 @@
   "name": "santamao",
   "version": "0.0.0",
   "scripts": {
-    "ng": "npm install",
-    "start": "ng serve",
+    "ng": "ng",
+    "start": "npm install",
     "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
