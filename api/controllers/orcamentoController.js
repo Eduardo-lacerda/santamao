@@ -6,11 +6,12 @@ var mongoose = require('mongoose');
 var Orcamento = mongoose.model('Orcamento');
 var nodemailer = require('nodemailer');
 var remetente = nodemailer.createTransport({
-  service: "gmail",
+  service: "Outlook365",
+  tls: { ciphers: 'SSLv3' },
   secure: true,
   auth:{
-  user: 'atendimentosantamao@gmail.com',
-  pass: 'onpedro12'},
+  user: 'eduardolacerda2@outlook.com',
+  pass: 'As7896543210@'},
 });
 
 exports.criarOrcamento = async (req, res) => {
@@ -37,7 +38,7 @@ exports.criarOrcamento = async (req, res) => {
         + '\nExtra Churrasqueira: ' + novoOrcamento.extraChurrasqueira +'\n\n\nPreço Total: ' + novoOrcamento.preco;
 
         var emailASerEnviado = {
-          from: 'atendimentosantamao@gmail.com',
+          from: 'eduardolacerda2@outlook.com',
           to: 'atendimentosantamao@gmail.com',
           subject: 'Orçamento '+novoOrcamento.nome,
           text: message
