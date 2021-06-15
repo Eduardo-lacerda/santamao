@@ -5,14 +5,54 @@ const { validationResult } = require("express-validator");
 var mongoose = require('mongoose');
 var Orcamento = mongoose.model('Orcamento');
 var nodemailer = require('nodemailer');
-var remetente = nodemailer.createTransport({
-  service: "Outlook365",
-  tls: { ciphers: 'SSLv3' },
-  secure: true,
-  auth:{
-  user: 'eduardolacerda2@outlook.com',
-  pass: 'As7896543210@'},
-});
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+
+const createTransporter = async () => {
+  try {
+    const oauth2Client = new OAuth2(
+      '850242234526-d0e0c9legc7kv52lncufa2ft6brcg841.apps.googleusercontent.com',
+      'QByRZoAj6QEAJx3wK4_TB-Ub',
+      "https://developers.google.com/oauthplayground"
+    );
+
+    oauth2Client.setCredentials({
+      refresh_token: '1//04B-ULrZwszCTCgYIARAAGAQSNwF-L9IrI_VKsm_vDHHjpwMf41KN8YmieBjNf7SdoACY73w9CdhJSnCWGDtjA_Oz1csjZW7hKBg'
+    });
+  
+    const accessToken = await new Promise((resolve, reject) => {
+      oauth2Client.getAccessToken((err, token) => {
+        if (err) {
+          reject("Failed to create access token :(");
+        }
+        resolve(token);
+      });
+    });
+  
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: 'atendimentosantamao@gmail.com',
+        accessToken,
+        clientId: '850242234526-d0e0c9legc7kv52lncufa2ft6brcg841.apps.googleusercontent.com',
+        clientSecret: 'QByRZoAj6QEAJx3wK4_TB-Ub',
+        refreshToken: '1//04B-ULrZwszCTCgYIARAAGAQSNwF-L9IrI_VKsm_vDHHjpwMf41KN8YmieBjNf7SdoACY73w9CdhJSnCWGDtjA_Oz1csjZW7hKBg'
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+    
+    return transporter;
+  }
+  catch(e) {
+    console.log('----------------------------------------------------')
+    console.log(e);
+    console.log('----------------------------------------------------')
+  }
+};
+
 
 exports.criarOrcamento = async (req, res) => {
     const errors = validationResult(req);
@@ -44,14 +84,24 @@ exports.criarOrcamento = async (req, res) => {
           text: message
         }
 
-        remetente.sendMail(emailASerEnviado, function(error){
-          if (error) {
-            console.log(error);
+        const sendEmail = async (emailOptions) => {
+          try {
+            let emailTransporter = await createTransporter();
+            await emailTransporter.sendMail(emailOptions, (function(error){
+              if (error) {
+                console.log(error);
+              }
+              else {
+                console.log('Email enviado com sucesso.');
+              }
+            }));
           }
-          else {
-            console.log('Email enviado com sucesso.');
+          catch (e) {
+            console.log(e)
           }
-        });
+        };
+
+        sendEmail(emailASerEnviado);
 
         res.status(201).json(
             success(
