@@ -72,10 +72,10 @@ exports.criarOrcamento = async (req, res) => {
           message = message + '\nAndares: ' + novoOrcamento.andares +'\nÁrea Externa: ' + (novoOrcamento.areaExterna? 'Sim': 'Não')
         }
 
-        message = message + '\n\nServiços Extras: \nExtra Banheiro: ' + novoOrcamento.extraBanheiro
-        + '\nExtra Cozinha Chão: ' + novoOrcamento.extraCozinhaChao +'\nExtra Quarto: ' + novoOrcamento.extraQuarto
-        + '\nExtra Cozinha Limpeza Interna: ' + novoOrcamento.extraCozinhaInterna +'\nExtra Cozinha Paredes: ' + novoOrcamento.extraCozinhaParedes
-        + '\nExtra Churrasqueira: ' + novoOrcamento.extraChurrasqueira +'\n\n\nPreço Total: ' + novoOrcamento.preco;
+        message = message + '\n\nServiços Extras: \nExtra Banheiro: ' + (novoOrcamento.extraBanheiro? 'Sim': 'Não')
+        + '\nExtra Cozinha Chão: ' + (novoOrcamento.extraCozinhaChao? 'Sim': 'Não') +'\nExtra Quarto: ' + (novoOrcamento.extraQuarto? 'Sim': 'Não')
+        + '\nExtra Cozinha Limpeza Interna: ' + (novoOrcamento.extraCozinhaInterna? 'Sim': 'Não') +'\nExtra Cozinha Paredes: ' + (novoOrcamento.extraCozinhaParedes? 'Sim': 'Não')
+        + '\nExtra Churrasqueira: ' + (novoOrcamento.extraChurrasqueira? 'Sim': 'Não') +'\n\n\nPreço Total: ' + novoOrcamento.preco;
 
         var emailASerEnviado = {
           from: 'eduardolacerda2@outlook.com',
