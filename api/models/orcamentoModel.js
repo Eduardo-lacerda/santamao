@@ -2,8 +2,6 @@ module.exports = (mongoose) => {
   const orcamentoSchema = new mongoose.Schema({
       nome: {
           type: String,
-          minlength: 5,
-          maxlength: 255,
       },
       email: {
           type: String,

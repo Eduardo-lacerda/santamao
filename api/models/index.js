@@ -7,5 +7,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.orcamentos = require("./orcamentoModel.js")(mongoose);
+db.leads = require("./leadModel.js")(mongoose);
 
 module.exports = db;
