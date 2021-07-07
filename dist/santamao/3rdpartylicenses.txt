@@ -13,12 +13,6 @@ MIT
 @angular/platform-browser
 MIT
 
-@angular/router
-MIT
-
-@ngx-translate/core
-MIT
-
 angular2-text-mask
 Unlicense
 This is free and unencumbered software released into the public domain.
